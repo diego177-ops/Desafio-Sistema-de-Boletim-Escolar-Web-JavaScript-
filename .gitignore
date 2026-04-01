@@ -1,0 +1,31 @@
+# Arquivos do sistema (Windows)
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Arquivos do sistema (Mac)
+.DS_Store
+
+# Logs
+*.log
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Pastas de dependências (caso use futuramente)
+node_modules/
+
+# Arquivos de ambiente
+.env
+
+# Configurações de IDEs
+.vscode/
+.idea/
+
+# Arquivos de build (caso evolua o projeto)
+dist/
+build/
+
+# Cache
+.cache/
