@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>📝 Sistema de boletim escolar</title>
+    <style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0f0f0f;
+    padding: 20px;
+    color: #e5e5e5;
+}
+
+h1 {
+    color: #ffffff;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    background-color: #2d2d2d;
+    color: #e5e5e5;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+    
+}
+
+button:hover {
+    background-color: #3f3f3f;
+    transform: scale(1.05);
+}
+
+#saida {
+    margin-top: 20px;
+    padding: 15px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    min-height: 100px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+    </style>
+</head>
+<body>
+    <h1>Sistema de boletim escolar</h1>
+    <button onclick="gerarBoletim()">Gerar Boletim</button>
+    <div id="resultado"></div>
+    <script>
+    function mostrar(texto) {
+        document.getElementById("saida").innerHTML += texto + "<br>";
+        }
+
+    function limpar() {
+        document.getElementById("saida").innerHTML = "";
+        }
+function gerarBoletim() {
+
+    // MATRIZ DE NOTAS (cada aluno tem 3 notas)
+    const alunos = [
+        [7, 8, 6],
+        [5, 4, 6],
+        [9, 9, 9],
+        [6, 6, 6]
+    ];
+
+    // ELEMENTO HTML
+    const areaResultado = document.getElementById("resultado");
+    areaResultado.innerHTML = "";
+
+    // VARIÁVEIS EXTRAS
+    let totalAprovados = 0;
+    let maiorMedia = 0;
+    let menorMedia = 10;
+
+    // PERCORRER ALUNOS (FOR)
+    for (let i = 0; i < alunos.length; i++) {
+
+        let notas = alunos[i];
+        let soma = 0;
+        let j = 0;
+
+        // PERCORRER NOTAS (WHILE)
+        while (j < notas.length) {
+            soma += notas[j];
+            j++;
+        }
+
+        // CALCULAR MÉDIA
+        let media = soma / notas.length;
+
+        // CLASSIFICAÇÃO
+        let resultado = "";
+        let classeCSS = "";
+
+        if (media >= 9) {
+            resultado = "Excelente";
+            classeCSS = "excelente";
+            totalAprovados++;
+        } else if (media >= 7) {
+            resultado = "Bom";
+            classeCSS = "bom";
+            totalAprovados++;
+        } else if (media >= 7) {
+            resultado = "Aprovado";
+            classeCSS = "aprovado";
+            totalAprovados++;
+        } else {
+            resultado = "Reprovado";
+            classeCSS = "reprovado";
+        }
+
+        // MAIOR E MENOR MÉDIA
+        if (media > maiorMedia) {
+            maiorMedia = media;
+        }
+
+        if (media < menorMedia) {
+            menorMedia = media;
+        }
+
+        // EXIBIR RESULTADO
+        const nomes = ["Diego", "Elon Musk", "Bill Gates", "Steve Jobs"];
+        areaResultado.innerHTML += `
+            <p class="${classeCSS}">
+                ${nomes[i]}: Média ${media.toFixed(1)} → ${resultado}
+            </p>
+        `;
+    }
+
+    // EXTRAS
+    areaResultado.innerHTML += "<hr>";
+    areaResultado.innerHTML += `<p><strong>Total de aprovados:</strong> ${totalAprovados}</p>`;
+    areaResultado.innerHTML += `<p><strong>Maior média:</strong> ${maiorMedia.toFixed(1)}</p>`;
+    areaResultado.innerHTML += `<p><strong>Menor média:</strong> ${menorMedia.toFixed(1)}</p>`;
+}
+    </script>
+</body>
+</html>
